@@ -1,0 +1,43 @@
+<section data-ng-controller="RfqsController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1>RFQ Info</h1>
+	</div>
+	<ul class="list-group">
+		<li class="list-group-item">
+			<strong>Complete by:&nbsp;</strong> {{ rfq.completeBy }}
+		</li>
+		<li class="list-group-item">
+			<strong>Quote type:&nbsp;</strong> {{ rfq.quoteType }}
+		</li>
+		<li class="list-group-item">
+			<strong>Requirements for delivery date:&nbsp;</strong> {{ rfq.deliveryRequirements }}
+		</li>
+		<li class="list-group-item">
+			<strong>Notes:&nbsp;</strong> {{ rfq.notes }}
+		</li>
+		<li class="list-group-item">
+			<strong>Material Description:</strong>
+			<ul>
+				<li ng-repeat="materialDescription in rfq.materialDescriptions">
+					{{ materialDescription.descriptor }}:&nbsp;&nbsp;{{ materialDescription.value }}
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == rfq.user._id))">
+		<a class="btn btn-primary" href="/#!/rfqs/{{rfq._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+	<small>
+		<em class="text-muted">
+			Posted on
+			<span data-ng-bind="rfq.created | date:'mediumDate'"></span>
+			by
+			<span data-ng-bind="rfq.user.displayName"></span>
+		</em>
+	</small>
+</section>
