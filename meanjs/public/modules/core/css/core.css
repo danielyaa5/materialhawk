@@ -10,7 +10,7 @@
 .ng-invalid.ng-dirty {
 	border-color: #FA787E;
 }
-.ng-valid.ng-dirty:not(#materialDescriptor):not(#materialValue) {
+.ng-valid.ng-dirty:not(#descriptionName):not(#descriptionValue) {
 	border-color: #78FA89;
 }
 .footer {

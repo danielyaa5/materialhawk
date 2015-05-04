@@ -30,20 +30,6 @@
   line-height: 1.33;
   border-radius: 35px;
 }
-.materialDescriptionItems {
-	padding-right: 0px;
-	padding-left: 0px;
-}
-.descriptionListItem {
-  padding: 6px 15px;
-  margin-bottom: -12px !important;
-}
-.descriptorColumn {
-  margin-right: 16px;
-}
-.valueColumn {
-  margin-right: 16px;
-}
-.descriptionListGroup {
-  margin-top: -12px;
+.no-padding-left {
+  padding-left: 0px;
 }
