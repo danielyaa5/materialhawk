@@ -1,11 +1,17 @@
 'use strict';
 
-var multer = require('multer');
 var fs = require('fs');
 
-exports.fileUpload = function(req, res) {
-    var file = req.files.file,
-        path = './app/uploads/rfqDocs/';
-        
-    console.log('Stream ended.');
+exports.rfqFiles = function(req, res) {
+    req.pipe(req.busboy);
+    req.busboy.on('file', function(fieldname, file, filename) {
+        var stream = fs.createWriteStream(__dirname + '/../uploads/rfqFiles/' + filename);
+        file.pipe(stream);
+        stream.on('close', function() {
+            console.log('File ' + filename + ' is uploaded');
+            res.json({
+                filename: filename
+            });
+        });
+    });
 };

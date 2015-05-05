@@ -22,13 +22,13 @@ var fs = require('fs'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
 	path = require('path'),
-	multer = require('multer');
+	busboy = require('connect-busboy');
 
 module.exports = function(db) {
 	// Initialize express app
 	var app = express();
 
-	app.use(multer({dest:'./app/uploads/rfqDocs/'}));
+	app.use(busboy());
 
 	// Globbing model files
 	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {

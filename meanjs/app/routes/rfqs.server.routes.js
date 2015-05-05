@@ -16,7 +16,7 @@ module.exports = function(app) {
 		.delete(users.requiresLogin, rfqs.hasAuthorization, rfqs.delete);
 
 	app.route('/rfqs/upload')
-		.post(upload.fileUpload);
+		.post(upload.rfqFiles);
 
 	// Finish by binding the Rfq middleware
 	app.param('rfqId', rfqs.rfqByID);
