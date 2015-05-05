@@ -21,11 +21,14 @@ var fs = require('fs'),
 	flash = require('connect-flash'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
-	path = require('path');
+	path = require('path'),
+	multer = require('multer');
 
 module.exports = function(db) {
 	// Initialize express app
 	var app = express();
+
+	app.use(multer({dest:'./app/uploads/rfqDocs/'}));
 
 	// Globbing model files
 	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {

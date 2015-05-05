@@ -1,8 +1,8 @@
 'use strict';
 
 // Rfqs controller
-angular.module('rfqs').controller('RfqsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Rfqs',
-    function($scope, $stateParams, $location, Authentication, Rfqs) {
+angular.module('rfqs').controller('RfqsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Rfqs', 'FileUploader',
+    function($scope, $stateParams, $location, Authentication, Rfqs, FileUploader) {
         $scope.authentication = Authentication;
         $scope.materialDescriptionArray = [];
 
@@ -15,6 +15,8 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$stateParams', '
                 notes: this.notes,
                 materialDescriptions: $scope.materialDescriptionArray
             });
+
+            uploader.uploadAll();
 
             // Redirect after save
             rfq.$save(function(response) {
@@ -131,5 +133,64 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$stateParams', '
                 }
             }
         };
+
+        $scope.clickFileUpload = function() {
+            console.log('hi');
+            document.getElementById('fileuploadButton').click();
+        };
+
+        /**
+         *   Controller logic for fileupload
+         */
+        var uploader = $scope.uploader = new FileUploader({
+            url: '/rfqs/upload'
+        });
+
+        // FILTERS
+
+        uploader.filters.push({
+            name: 'customFilter',
+            fn: function(item /*{File|FileLikeObject}*/ , options) {
+                return this.queue.length < 10;
+            }
+        });
+
+        // CALLBACKS
+
+        // uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/ , filter, options) {
+        //     console.info('onWhenAddingFileFailed', item, filter, options);
+        // };
+        // uploader.onAfterAddingFile = function(fileItem) {
+        //     documentItems = fileItem;
+        // };
+        // uploader.onAfterAddingAll = function(addedFileItems) {
+        //     documentItems = addedFileItems;
+        // };
+        // uploader.onBeforeUploadItem = function(item) {
+        //     console.info('onBeforeUploadItem', item);
+        // };
+        // uploader.onProgressItem = function(fileItem, progress) {
+        //     console.info('onProgressItem', fileItem, progress);
+        // };
+        // uploader.onProgressAll = function(progress) {
+        //     console.info('onProgressAll', progress);
+        // };
+        // uploader.onSuccessItem = function(fileItem, response, status, headers) {
+        //     console.info('onSuccessItem', fileItem, response, status, headers);
+        // };
+        // uploader.onErrorItem = function(fileItem, response, status, headers) {
+        //     console.info('onErrorItem', fileItem, response, status, headers);
+        // };
+        // uploader.onCancelItem = function(fileItem, response, status, headers) {
+        //     console.info('onCancelItem', fileItem, response, status, headers);
+        // };
+        // uploader.onCompleteItem = function(fileItem, response, status, headers) {
+        //     console.info('onCompleteItem', fileItem, response, status, headers);
+        // };
+        // uploader.onCompleteAll = function() {
+        //     console.info('onCompleteAll');
+        // };
+
+        // console.info('uploader', uploader);
     }
 ]);
