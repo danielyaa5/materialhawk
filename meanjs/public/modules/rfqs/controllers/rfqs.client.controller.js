@@ -135,7 +135,6 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$stateParams', '
         };
 
         $scope.clickFileUpload = function() {
-            console.log('hi');
             document.getElementById('fileuploadButton').click();
         };
 
