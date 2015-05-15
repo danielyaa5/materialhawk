@@ -28,5 +28,6 @@ angular.module('rfqs').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
 		Menus.addMenuItem('topbar', 'My RFQs', 'rfqs', 'item', '/rfqs', false, null, 0);
+		Menus.addMenuItem('topbar', 'New RFQ', 'rfqs/create', 'item', '/rfqs/create', false, null, 1);
 	}
 ]);

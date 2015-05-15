@@ -4,28 +4,29 @@
     </div>
     <ul class="list-group">
         <li class="list-group-item">
-            <strong>Complete by:&nbsp;</strong> {{ rfq.completeBy }}
+            Nickname:&nbsp; {{ rfq.nickname }}
         </li>
         <li class="list-group-item">
-            <strong>Quote type:&nbsp;</strong> {{ rfq.quoteType }}
+            Complete by:&nbsp; {{ rfq.completeBy }}
         </li>
         <li class="list-group-item">
-            <strong>Requirements for delivery date:&nbsp;</strong> {{ rfq.deliveryRequirements }}
-            <i ng-show="!rfq.deliveryRequirements">No requirements for delivery are specied</i>
+            Quote type:&nbsp; {{ rfq.quoteType }}
         </li>
         <li class="list-group-item">
-            <strong>Notes:&nbsp;</strong> {{ rfq.notes }}
-            <i ng-show="!rfq.notes">No notes are specied</i>
+            Requirements for delivery date:&nbsp;{{ rfq.deliveryRequirements }}
+            <i ng-show="!rfq.deliveryRequirements">No requirements for delivery are specified</i>
         </li>
         <li class="list-group-item">
-            <strong>Material Descriptions</strong>
+            Notes:&nbsp; {{ rfq.notes }}
+            <i ng-show="!rfq.notes">No notes are specified</i>
+        </li>
+        <li class="list-group-item">
+            Privacy settings:&nbsp; {{ rfq.privacy }}
+        </li>
+        <li class="list-group-item">Approved Manufacterer List
             <ul>
-                <li ng-repeat="descriptionItem in rfq.materialDescriptions">
-                    {{ descriptionItem.name }}:&nbsp;&nbsp;{{ descriptionItem.value }}
-                </li>
-                <li ng-show="rfq.materialDescriptions == 0">
-                    <i>No material descriptions are specified</i>
-                </li>
+                <li ng-repeat="aml in rfq.amlTags">{{ aml.text }}</li>
+                <li ng-show="rfq.amlTags.length === 0"><i>No AML is specified</i></li>
             </ul>
         </li>
     </ul>
@@ -38,11 +39,11 @@
         </a>
     </div>
     <small>
-		<em class="text-muted">
-			Created on
-			<span data-ng-bind="rfq.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="rfq.user.displayName"></span>
-		</em>
-	</small>
+        <em class="text-muted">
+            Created on
+            <span data-ng-bind="rfq.created | date:'mediumDate'"></span>
+            by
+            <span data-ng-bind="rfq.user.displayName"></span>
+        </em>
+    </small>
 </section>

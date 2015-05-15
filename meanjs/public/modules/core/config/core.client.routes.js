@@ -22,6 +22,6 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 angular.module('core').run(['Menus',
 	function(Menus) {
 		// Set top bar menu items
-		Menus.addMenuItem('topbar', 'About Us', 'about', 'item', '/about', true, null, 1);
+		Menus.addMenuItem('topbar', 'About Us', 'about', 'item', '/about', true, null, 2);
 	}
 ]);
