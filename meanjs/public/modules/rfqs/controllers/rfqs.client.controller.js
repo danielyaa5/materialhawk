@@ -11,22 +11,61 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
             $scope.data = data;
         });
 
+        // Watch for change in material selectors
+        $scope.$watch('selectedMetal', function() {
+            $scope.selectedSeries = '';
+            $scope.selectedGrade = '';
+        });
+        $scope.$watch('selectedSeries', function() {
+            $scope.selectedGrade = '';
+        });
+
+        // Material list functions
         $scope.removeAllMaterials = function() {
             $scope.materialObjects = [];
-        }
+        };
 
         $scope.removeMaterial = function(material) {
             $scope.materialObjects.splice($scope.materialObjects.indexOf(material), 1);
         };
 
         $scope.addMaterial = function() {
-            $scope.materialObjects.push({
-                metal: $scope.selectedMetal,
-                grade: $scope.selectedGrade
-            });
+            var selectedMetal = $scope.selectedMetal;
+            var selectedSeries = $scope.selectedSeries;
+            var selectedGrade = $scope.selectedGrade;
+
+
+            if (selectedMetal && selectedSeries && selectedGrade) {
+                var newMaterial = {
+                    metal: $scope.selectedMetal,
+                    grade: $scope.selectedGrade
+                };
+                var duplicate = false;
+
+                //check if material is already in list
+                for (var i = $scope.materialObjects.length - 1; i >= 0; i--) {
+                    if ($scope.materialObjects[i].metal === newMaterial.metal && $scope.materialObjects[i].grade === newMaterial.grade) {
+                        duplicate = true;
+                        $scope.addMaterialError = 'This material is already in your list';
+                    }
+                }
+
+                //if material doesnt exist in list, add material
+                if (!duplicate) {
+                    $scope.materialObjects.push(newMaterial);
+                    //reset error message
+                    $scope.addMaterialError = '';
+                }
+            } else if (!selectedMetal) {
+                $scope.addMaterialError = 'Please select a metal';
+            } else if (!selectedSeries) {
+                $scope.addMaterialError = 'Please select a grade series';
+            } else {
+                $scope.addMaterialError = 'Please select a grade';
+            }
         };
 
-      
+
         // Create new Rfq
         $scope.create = function() {
             // Create new Rfq object
