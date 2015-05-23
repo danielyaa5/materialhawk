@@ -4,11 +4,10 @@
     </div>
     <div class="list-group">
         <a data-ng-repeat="rfq in rfqs" data-ng-href="#!/rfqs/{{rfq._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Created on
-				<span data-ng-bind="rfq.created | date:'medium'"></span>
-			</small>
-			<h4 class="list-group-item-heading">{{ rfq.nickname.substr(0, 1).toUpperCase() + rfq.nickname.substr(1) }}, complete by {{ rfq.completeBy }}</h4>
+			<h4 class="list-group-item-heading">{{ rfq.nickname.substr(0, 1).toUpperCase() + rfq.nickname.substr(1) }}</h4>
+            <hr>
+            <h5>Complete by <i>{{ rfq.completeBy }}</i></h5>
+            <h5>Created on <i>{{ rfq.created | date:'medium' }}</i></h5>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!rfqs.$resolved || rfqs.length">
