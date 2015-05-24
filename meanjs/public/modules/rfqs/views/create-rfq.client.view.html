@@ -15,9 +15,12 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label requiredStar" for="completeBy">Complete RFQ by</label>
-                    <div class="controls">
-                        <input type="date" data-ng-model="completeBy" id="completeBy" class="form-control" placeholder="yyyy-MM-dd" required>
-                    </div>
+                    <p class="input-group">
+                        <input type="text" class="form-control" datepicker-popup ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="yyyy-MM-dd"/>
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
                 </div>
                 <div class="form-group">
                     <strong class="requiredStar">Quote type</strong>
@@ -121,7 +124,7 @@
                     <strong class="requiredStar">I would like this RFQ shared</strong>
                     <br>
                     <label class="radio-inline">
-                        <input type="radio" name="privacy" value="Public" data-ng-model="privacy" required>Publicaly
+                        <input type="radio" name="privacy" value="Public" data-ng-model="privacy" required>Publicly
                     </label>
                     <label class="radio-inline">
                         <input type="radio" name="privacy" value="Private" data-ng-model="privacy">Privately
