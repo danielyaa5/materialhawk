@@ -133,6 +133,11 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
 
         // Create new Rfq
         $scope.create = function() {
+            //Change completeBy's time to 23:59:59:999
+            this.dt.setHours(23);
+            this.dt.setMinutes(59);
+            this.dt.setSeconds(59);
+            this.dt.setMilliseconds(999);
             // Create new Rfq object
             var rfq = new Rfqs({
                 nickname: this.nickname,
