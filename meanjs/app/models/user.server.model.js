@@ -84,10 +84,9 @@ var UserSchema = new Schema({
 	email: {
 		type: String,
 		trim: true,
-		default: '',
-		unique: true,
 		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
-		match: [/.+\@.+\..+/, 'Please fill a valid email address']
+		match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+		unique: 'testing error message'
 	},
 	username: {
 		type: String,
@@ -143,19 +142,6 @@ UserSchema.pre('save', function(next) {
 
 	next();
 });
-
-/**
- * Check if email already exists in database
- */
-UserSchema.path('email').validate(function(value, done) {
-    this.model('User').count({ email: value }, function(err, count) {
-        if (err) {
-            return done(err);
-        } 
-        // If `count` is greater than zero, "invalidate"
-        done(!count);
-    });
-}, 'Email already exists');
 
 /**
  * Create instance method for hashing a password
