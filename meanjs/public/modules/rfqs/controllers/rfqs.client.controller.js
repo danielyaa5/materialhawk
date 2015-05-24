@@ -15,8 +15,10 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
         $scope.$watch('selectedMetal', function() {
             $scope.selectedSeries = '';
             $scope.selectedGrade = '';
+            $scope.customGrade = false;
         });
         $scope.$watch('selectedSeries', function() {
+            $scope.customGrade = false;
             $scope.selectedGrade = '';
         });
 
@@ -35,7 +37,7 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
             var selectedGrade = $scope.selectedGrade;
 
 
-            if (selectedMetal && selectedSeries && selectedGrade) {
+            if (selectedMetal && selectedGrade) {
                 var newMaterial = {
                     metal: $scope.selectedMetal,
                     grade: $scope.selectedGrade
@@ -52,6 +54,13 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
 
                 //if material doesnt exist in list, add material
                 if (!duplicate) {
+                    //if custom grade option is on, reset selectedGrade and selectedSeries
+                    if ($scope.customGrade) {
+                        $scope.selectedSeries = '';
+                        $scope.selectedGrade = '';
+                        //return from custom grade option
+                        $scope.customGrade = false;
+                    }
                     $scope.materialObjects.push(newMaterial);
                     //reset error message
                     $scope.addMaterialError = '';
