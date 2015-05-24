@@ -10,7 +10,7 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
         //Angular UI Datepicker
 
         $scope.clear = function() {
-            $scope.dt = null;
+            $scope.completeBy = null;
         };
 
         // Disable weekend selection
@@ -134,14 +134,14 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
         // Create new Rfq
         $scope.create = function() {
             //Change completeBy's time to 23:59:59:999
-            this.dt.setHours(23);
-            this.dt.setMinutes(59);
-            this.dt.setSeconds(59);
-            this.dt.setMilliseconds(999);
+            this.completeBy.setHours(23);
+            this.completeBy.setMinutes(59);
+            this.completeBy.setSeconds(59);
+            this.completeBy.setMilliseconds(999);
             // Create new Rfq object
             var rfq = new Rfqs({
                 nickname: this.nickname,
-                completeBy: this.dt,
+                completeBy: this.completeBy,
                 quoteType: this.quoteType,
                 notes: this.notes,
                 privacy: this.privacy,
@@ -197,7 +197,6 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
                     rfqId: $stateParams.rfqId
                 }, function(rfq) {
                     $scope.rfq = rfq;
-                    $scope.amlTags = rfq.amlTags;
                 });
             } else {
                 $scope.rfq = Rfqs.get({

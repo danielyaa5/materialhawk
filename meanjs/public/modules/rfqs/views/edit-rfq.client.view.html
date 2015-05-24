@@ -16,9 +16,12 @@
                 <div class="form-group">
                     <div class="controls">
                         <label class="control-label requiredStar" for="completeBy">Complete RFQ by</label>
-                        <div class="controls">
-                            <input type="date" data-ng-model="rfq.completeBy" id="completeBy" class="form-control" placeholder="yyyy-MM-dd" required>
-                        </div>
+                        <p class="input-group">
+                            <input type="text" name="completeBy" class="form-control" datepicker-popup ng-model="rfq.completeBy" is-open="opened" min-date="minDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" placeholder="yyyy-MM-dd" />
+                            <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -54,7 +57,7 @@
                         Approved Manufacturer List (AML)
                     </label>
                     <h5><i>Which suppliers would you like to receive your RFQ?</i></h5>
-                    <tags-input id="aml-tags" class="aml-tags" name="aml-tags" ng-model="amlTags" placeholder="Type a manufacturer and press enter" replace-spaces-with-dashes="false"></tags-input>
+                    <tags-input id="aml-tags" class="aml-tags" name="aml-tags" ng-model="rfq.amlTags" placeholder="Type a manufacturer and press enter" replace-spaces-with-dashes="false"></tags-input>
                 </div>
                 <div data-ng-show="error" class="text-danger">
                     <strong data-ng-bind="error"></strong>
