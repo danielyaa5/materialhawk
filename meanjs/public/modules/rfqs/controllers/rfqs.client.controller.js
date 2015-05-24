@@ -120,13 +120,18 @@ angular.module('rfqs').controller('RfqsController', ['$scope', '$http', '$stateP
                 amlTags: this.amlTags
             });
 
-            // Redirect after save
-            rfq.$save(function(response) {
-                $location.path('rfqs/' + response._id);
+            //if at least one material is in the material list
+            if ($scope.materialObjects.length > 0) {
+                // Redirect after save
+                rfq.$save(function(response) {
+                    $location.path('rfqs/' + response._id);
 
-            }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
-            });
+                }, function(errorResponse) {
+                    $scope.error = errorResponse.data.message;
+                });
+            } else {
+                $scope.error = 'Please add at least one material';
+            }
         };
 
         // Remove existing Rfq

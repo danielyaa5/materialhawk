@@ -140,8 +140,10 @@
                 <div class="form-group">
                     <input ng-click="create()" value="Submit" class="btn btn-default" ng-disabled="rfqForm.$invalid">
                 </div>
-                <div data-ng-show="error" class="text-danger">
-                    <strong data-ng-bind="error"></strong>
+                <div class="form-group">
+                    <div data-ng-show="error" class="text-danger">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
                 </div>
             </fieldset>
         </form>
