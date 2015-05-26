@@ -1,0 +1,13 @@
+{
+	"Balls": ["Size"],
+	"Beams": ["Depths", "Flange Width", "Length"],
+	"Billet": ["Diameter", "Width", "Height", "Length"],
+	"Flat Bar": ["Width", "Thickness", "Length"],
+	"Foil": ["Width", "Thickness", "Length"],
+	"Hex Bar": ["Width Across Flats", "Length"],
+	"Plate": ["Length", "Width", "Thickness"],
+	"Round Bar": ["Diameter", "Length"],
+	"Sheet": ["Thickness", "Width", "Length"],
+	"Square Bar": ["Thickness", "Width", "Length"],
+	"Wire": ["Diameter", "Weight"]
+}
